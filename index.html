@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>서울신답초등학교 교가 맞추기</title>
+    <!-- Google Fonts for Chalkboard & UI Aesthetics -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Gowun+Dodum&family=Jua&display=swap" rel="stylesheet">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <!-- Fixed 1080x1920 Signage Outer Wrapper -->
+    <div id="stage-container">
+      <div id="app-stage" class="signage-canvas">
+        <!-- MAIN VIEW CONTAINER (Fills space between Header and Bottom CTA) -->
+        <main id="view-container" class="kiosk-main">
+          <!-- Views will be dynamically rendered here by main.js -->
+        </main>
+
+        <!-- BOTTOM CTA CONTAINER (Height: 240px) -->
+        <footer id="app-footer" class="kiosk-footer">
+          <!-- Dynamic CTA buttons injected by main.js -->
+        </footer>
+      </div>
+    </div>
+
+    <!-- Main JS Module -->
+    <script type="module" src="/js/main.js"></script>
+  </body>
+</html>
+
+

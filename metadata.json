@@ -1,0 +1,6 @@
+{
+  "name": "서울신답초등학교 교가 맞추기 키오스크",
+  "description": "1080x1920 세로형 터치 사이니지용 서울신답초등학교 교가 맞추기 디지털 게임 키오스크",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

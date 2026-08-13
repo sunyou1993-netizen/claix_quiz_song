@@ -1,0 +1,839 @@
+/* Reset & Typography */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif !important;
+}
+
+html, body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #E1EDFA url('/image243.png') center center / cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Outer Stage Container for Auto-Scaling on any screen */
+#stage-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  background: transparent;
+}
+
+/* Fixed 1080x1920 Portrait Canvas */
+.signage-canvas {
+  width: 1080px;
+  height: 1920px;
+  background: transparent;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transform-origin: center center;
+  box-shadow: none;
+}
+
+/* Clean Header Area Container */
+.btn-top-back {
+  position: absolute;
+  top: 36px;
+  left: 36px;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  border: 2px solid #CBD5E1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.22);
+  z-index: 200;
+  transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-top-back:active {
+  transform: scale(0.92);
+  background-color: #F1F5F9;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.16);
+}
+
+/* Header Area Container */
+.kiosk-header {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 48px 0 48px;
+  z-index: 10;
+}
+
+.header-icon-btn {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: white;
+  border: none;
+  color: #006CFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0, 108, 255, 0.12);
+  transition: transform 0.15s ease;
+}
+
+.header-icon-btn:active {
+  transform: scale(0.92);
+}
+
+.icon-40 {
+  width: 40px;
+  height: 40px;
+}
+
+.header-home-btn {
+  height: 64px;
+  padding: 0 28px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #006CFF;
+  background-color: white;
+  border: none;
+  border-radius: 32px;
+  box-shadow: 0 6px 16px rgba(0, 108, 255, 0.12);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.15s ease;
+}
+
+.header-home-btn:active {
+  transform: scale(0.94);
+}
+
+/* Game Title Banner (Centered Text Block) */
+.title-banner-wrapper {
+  margin-top: 10px;
+  width: 100%;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 15;
+}
+
+.decor-left-window {
+  width: 240px;
+  max-width: 240px;
+  height: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  filter: drop-shadow(0 6px 14px rgba(0, 80, 200, 0.08));
+}
+
+.decor-right-shelf {
+  width: 240px;
+  max-width: 240px;
+  height: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  filter: drop-shadow(0 6px 14px rgba(0, 80, 200, 0.08));
+}
+
+.title-center-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 0 12px;
+}
+
+.title-text-img {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  max-height: 312px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 20px rgba(0, 108, 255, 0.12));
+  animation: titlePulse 3.5s ease-in-out infinite;
+}
+
+.title-sub-text {
+  margin-top: 10px;
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 1.35;
+  color: #3B629B;
+  text-align: center;
+  letter-spacing: -0.5px;
+}
+
+.timer-pill-badge {
+  margin-top: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background-color: #FFFFFF;
+  border: none;
+  border-radius: 36px;
+  padding: 8px 36px;
+  box-shadow: 0 6px 16px rgba(0, 80, 200, 0.08);
+  font-family: 'Pretendard', sans-serif !important;
+  font-weight: 600;
+  font-size: 30px;
+  color: #1E40AF;
+}
+
+.timer-pill-badge.warning {
+  background: linear-gradient(180deg, #FEE2E2 0%, #FCA5A5 100%);
+  border-color: #EF4444;
+  color: #991B1B;
+  animation: pulse-warn 0.8s infinite alternate;
+}
+
+@keyframes pulse-warn {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.06); }
+}
+
+/* Main View Container */
+.kiosk-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 48px;
+  gap: 20px;
+  position: relative;
+  z-index: 10;
+  overflow: visible;
+}
+
+/* =========================================================
+   CHALKBOARD STYLING (칠판)
+   ========================================================= */
+.chalkboard-container {
+  min-height: 780px;
+  flex: none;
+  background-color: #1D4A38;
+  border: 14px solid #D7A063;
+  border-radius: 36px;
+  padding: 28px 28px 36px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 
+    0 24px 48px rgba(0, 0, 0, 0.22), 
+    inset 0 0 50px rgba(0, 0, 0, 0.4),
+    inset 0 2px 4px rgba(255, 255, 255, 0.5);
+  position: relative;
+  overflow: visible;
+  margin-top: 30px; /* Space for top frame decor */
+}
+
+/* Bear Mascot Attached to Top Right of Chalkboard Frame with Zero Gap */
+.chalkboard-mascot-img {
+  position: absolute;
+  bottom: 100%;
+  right: -10px;
+  margin-bottom: -14px; /* Flushes bottom directly onto 14px wooden frame without gap */
+  width: 250px;
+  height: auto;
+  max-height: 250px;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 20px rgba(0, 80, 200, 0.2));
+  z-index: 30;
+  pointer-events: none;
+}
+
+/* Subtle chalk dust background radial gradient */
+.chalkboard-container::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.06) 0%, transparent 75%);
+  border-radius: 22px;
+  pointer-events: none;
+}
+
+/* Bottom Wooden Chalk Tray Ledge */
+.chalkboard-tray {
+  position: absolute;
+  bottom: 0;
+  left: -14px;
+  right: -14px;
+  height: 28px;
+  background: linear-gradient(180deg, #C58F52 0%, #A47037 100%);
+  border-top: 3px solid #E8B97F;
+  box-shadow: 0 -4px 8px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+  z-index: 5;
+}
+
+/* Eraser (지우개) */
+.tray-eraser {
+  width: 90px;
+  height: 20px;
+  background: #2563EB;
+  border-radius: 4px;
+  position: relative;
+  box-shadow: 0 -2px 4px rgba(0,0,0,0.3);
+  transform: translateY(-8px);
+}
+
+.tray-eraser::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: #1E293B;
+  border-radius: 0 0 4px 4px;
+}
+
+/* Chalk Sticks on Tray */
+.tray-chalks-row {
+  display: flex;
+  gap: 12px;
+  margin-left: 30px;
+  transform: translateY(-6px);
+}
+
+.chalk-stick {
+  width: 50px;
+  height: 10px;
+  border-radius: 3px;
+  box-shadow: 0 -2px 3px rgba(0,0,0,0.2);
+}
+
+.chalk-white { background: #FFFFFF; }
+.chalk-yellow { background: #FDE047; }
+.chalk-pink { background: #F472B6; }
+.chalk-blue { background: #38BDF8; }
+
+/* Chalkboard Doodles */
+.chalk-doodle {
+  position: absolute;
+  font-family: 'Pretendard', sans-serif;
+  user-select: none;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.doodle-star { top: 16px; left: 24px; font-size: 32px; color: #FDE047; }
+.doodle-note1 { top: 140px; left: 20px; font-size: 32px; color: #F472B6; }
+.doodle-school { bottom: 35px; left: 24px; font-size: 36px; color: #FFFFFF; }
+.doodle-notes2 { top: 16px; right: 24px; font-size: 32px; color: #38BDF8; }
+.doodle-heart { top: 140px; right: 20px; font-size: 32px; color: #F472B6; }
+.doodle-flower { bottom: 35px; right: 24px; font-size: 36px; color: #FDE047; }
+
+/* Chalkboard Song Lyrics Lines List */
+.chalk-lyrics-container {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 0;
+  z-index: 2;
+}
+
+.chalk-lyric-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: 'Pretendard', sans-serif !important;
+  font-size: 40px;
+  font-weight: 500;
+  color: #FFFFFF;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.8), 2px 2px 4px rgba(0, 0, 0, 0.4);
+  line-height: 1.3;
+}
+
+/* Choseong Square Chalk Box */
+.choseong-box {
+  width: 68px;
+  height: 68px;
+  border: 3.5px solid #FFFFFF;
+  border-radius: 14px;
+  background-color: rgba(255, 255, 255, 0.08);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Pretendard', sans-serif !important;
+  font-weight: 500;
+  font-size: 36px;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.4, 1);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.choseong-box.active-target {
+  border-color: #FDE047;
+  background-color: rgba(253, 224, 71, 0.2);
+  color: #FDE047;
+  transform: scale(1.08);
+  box-shadow: 0 0 16px rgba(253, 224, 71, 0.4);
+}
+
+.choseong-box.filled {
+  border-color: #38BDF8;
+  background-color: #0284C7;
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  font-size: 42px;
+}
+
+.choseong-box.correct {
+  border-color: #34D399;
+  background-color: #059669;
+  color: #FFFFFF;
+  animation: pop-bounce 0.4s ease;
+}
+
+.choseong-box.wrong {
+  border-color: #F87171;
+  background-color: #DC2626;
+  color: #FFFFFF;
+  animation: shake 0.4s ease;
+}
+
+/* =========================================================
+   BOTTOM SYLLABLE KEYPAD TRAY (음절 자판)
+   ========================================================= */
+.syllable-keypad-tray {
+  background: linear-gradient(180deg, #F5D3A4 0%, #E2B77B 100%);
+  border: 2px solid #C8995C;
+  border-radius: 32px;
+  padding: 24px 28px;
+  box-shadow: 
+    0 16px 32px rgba(0, 0, 0, 0.12), 
+    inset 0 2px 4px rgba(255, 255, 255, 0.7);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 10;
+}
+
+.syllable-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 14px;
+}
+
+.syllable-btn {
+  height: 92px;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+  border: 1px solid #E2E8F0;
+  border-radius: 20px;
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  color: #334155;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 0 #CBDDF2, 0 10px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, opacity 0.2s ease;
+}
+
+.syllable-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 4px 0 #CBDDF2, 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.syllable-btn.disabled {
+  opacity: 0.35;
+  pointer-events: none;
+  transform: translateY(4px);
+  box-shadow: 0 4px 0 #CBDDF2;
+  background: #E2E8F0;
+  color: #64748B;
+}
+
+/* Actions attached directly under syllable keypad cards */
+.keypad-actions-row {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Bottom Controls Bar (지우개, 힌트, 확인 등) */
+.bottom-controls-bar {
+  display: flex;
+  gap: 16px;
+  z-index: 10;
+}
+
+.ctrl-btn {
+  height: 120px;
+  flex: 1;
+  border-radius: 28px;
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 700;
+  font-size: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 0 20px;
+  white-space: nowrap;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.ctrl-btn:active {
+  transform: scale(0.96);
+}
+
+.ctrl-btn-sec {
+  background-color: #FFFFFF;
+  color: #006CFF;
+  border: none;
+  box-shadow: 0 8px 20px rgba(0, 108, 255, 0.15);
+}
+
+.ctrl-btn-pri {
+  background: #006CFF;
+  color: #FFFFFF;
+  box-shadow: 0 12px 28px rgba(0, 108, 255, 0.35);
+}
+
+.ctrl-btn-accent {
+  background: linear-gradient(180deg, #10B981 0%, #059669 100%);
+  color: #FFFFFF;
+  box-shadow: 0 12px 28px rgba(16, 185, 129, 0.3);
+}
+
+/* =========================================================
+   HOME & RESULT MODAL VIEWS
+   ========================================================= */
+.home-view-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 100%;
+}
+
+.card-white {
+  background: #FFFFFF;
+  border-radius: 32px;
+  padding: 32px;
+  box-shadow: 0 16px 36px rgba(0, 108, 255, 0.08);
+}
+
+.school-badge-wrapper {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: white;
+  padding: 12px;
+  box-shadow: 0 12px 28px rgba(0, 108, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.school-badge-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.verse-opt-row {
+  display: flex;
+  gap: 16px;
+}
+
+.verse-opt-btn {
+  flex: 1;
+  height: 84px;
+  border-radius: 24px;
+  background-color: #FFFFFF;
+  border: 3px solid #E2E8F0;
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 500;
+  font-size: 32px;
+  color: #475569;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.verse-opt-btn.selected {
+  background-color: #006CFF;
+  border-color: #006CFF;
+  color: #FFFFFF;
+  box-shadow: 0 8px 20px rgba(0, 108, 255, 0.25);
+}
+
+/* Result Modal Popup */
+.result-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  box-sizing: border-box;
+}
+
+/* Toast Popup Styling */
+.game-toast-popup {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #FFFFFF;
+  padding: 32px 56px;
+  border-radius: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  z-index: 150;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  animation: toast-pop-in 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  pointer-events: none;
+}
+
+.game-toast-popup.wrong-toast {
+  border: 6px solid #EF4444;
+  background: #FEF2F2;
+}
+
+.game-toast-popup.success-toast {
+  border: 6px solid #10B981;
+  background: #ECFDF5;
+}
+
+.toast-icon {
+  font-size: 68px;
+}
+
+.toast-text {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 800;
+  font-size: 52px;
+  color: #1E293B;
+  white-space: nowrap;
+}
+
+.game-toast-popup.wrong-toast .toast-text {
+  color: #DC2626;
+}
+
+.game-toast-popup.success-toast .toast-text {
+  color: #059669;
+}
+
+.game-toast-popup.fade-out {
+  animation: toast-fade-out 0.4s ease forwards;
+}
+
+@keyframes toast-pop-in {
+  0% { transform: translate(-50%, -50%) scale(0.6); opacity: 0; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+@keyframes toast-fade-out {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+}
+
+.result-dialog {
+  background: #FFFFFF;
+  border: 6px solid #006CFF;
+  border-radius: 40px;
+  padding: 48px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+  animation: pop-bounce 0.5s ease;
+}
+
+.result-trophy {
+  font-size: 110px;
+  animation: bounce 1.2s infinite alternate;
+}
+
+.result-title-text {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 800;
+  font-size: 56px;
+  color: #0F172A;
+}
+
+.result-score-big {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 800;
+  font-size: 88px;
+  color: #006CFF;
+}
+
+/* Animations */
+@keyframes pop-bounce {
+  0% { transform: scale(0.8); opacity: 0; }
+  70% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-10px); }
+  40%, 80% { transform: translateX(10px); }
+}
+
+@keyframes bounce {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-20px); }
+}
+
+/* Full Lyrics Modal Styling */
+.full-lyrics-dialog {
+  max-width: 860px;
+  width: 90%;
+  background: #FFFFFF;
+  border-radius: 36px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  border: 4px solid #E2E8F0;
+  animation: pop-bounce 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.lyrics-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.lyrics-icon {
+  font-size: 48px;
+}
+
+.lyrics-title {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 800;
+  font-size: 42px;
+  color: #1E293B;
+  margin: 0;
+}
+
+.lyrics-content-card {
+  width: 100%;
+  background: #F8FAFC;
+  border: 2px solid #E2E8F0;
+  border-radius: 28px;
+  padding: 32px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.lyrics-verse-badge {
+  align-self: flex-start;
+  background: #E0F2FE;
+  color: #0369A1;
+  font-weight: 700;
+  font-size: 28px;
+  padding: 8px 24px;
+  border-radius: 20px;
+  border: 1px solid #BAE6FD;
+}
+
+.lyrics-lines-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.lyrics-line-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 34px;
+  font-weight: 600;
+  color: #334155;
+  line-height: 1.4;
+}
+
+.line-num {
+  color: #0284C7;
+  font-weight: 700;
+  min-width: 36px;
+}
+
+.lyrics-refrain-item {
+  margin-top: 12px;
+  padding-top: 16px;
+  border-top: 2px dashed #CBD5E1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #0284C7;
+}
+
+@keyframes titlePulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
