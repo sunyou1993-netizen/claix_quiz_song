@@ -515,10 +515,9 @@ function renderMainGameUI() {
   // Render Chalkboard Card + Keypad Tray
   main.innerHTML = `
     <!-- Top-Left Circular Back Button -->
-    <button id="btn-back" class="btn-top-back" aria-label="뒤로가기">
+    <button id="btn-back" class="btn-top-back" aria-label="닫기">
       <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#334155" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M19 12H5"/>
-        <path d="M12 19l-7-7 7-7"/>
+        <path d="M18 6L6 18M6 6l12 12"/>
       </svg>
     </button>
 
@@ -591,16 +590,12 @@ function renderMainGameUI() {
 }
 
 function attachEventHandlers(totalBoxes) {
-  // 0. Top Back Button
+  // 0. Top Back/Close Button
   const btnBack = document.getElementById('btn-back');
   if (btnBack) {
     btnBack.addEventListener('click', () => {
       sfx.playClick();
-      if (window.history && window.history.length > 1) {
-        window.history.back();
-      } else {
-        initGameSession();
-      }
+      window.location.href = 'https://claix-quiz-list-rl4x.vercel.app/';
     });
   }
 
@@ -867,16 +862,12 @@ function showResultModal(isSuccess) {
 document.addEventListener('DOMContentLoaded', () => {
   setupAutoScaling();
 
-  // Header Back Button
+  // Header Back / Close Button
   const btnBack = document.getElementById('btn-back');
   if (btnBack) {
     btnBack.addEventListener('click', () => {
       sfx.playClick();
-      if (window.history && window.history.length > 1) {
-        window.history.back();
-      } else {
-        initGameSession();
-      }
+      window.location.href = 'https://claix-quiz-list-rl4x.vercel.app/';
     });
   }
 
