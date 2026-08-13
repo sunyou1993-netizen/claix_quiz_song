@@ -596,7 +596,11 @@ function attachEventHandlers(totalBoxes) {
   if (btnBack) {
     btnBack.addEventListener('click', () => {
       sfx.playClick();
-      initGameSession();
+      if (window.history && window.history.length > 1) {
+        window.history.back();
+      } else {
+        initGameSession();
+      }
     });
   }
 
@@ -868,7 +872,11 @@ document.addEventListener('DOMContentLoaded', () => {
   if (btnBack) {
     btnBack.addEventListener('click', () => {
       sfx.playClick();
-      initGameSession();
+      if (window.history && window.history.length > 1) {
+        window.history.back();
+      } else {
+        initGameSession();
+      }
     });
   }
 
