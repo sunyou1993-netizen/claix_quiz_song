@@ -404,19 +404,25 @@ const state = {
 // ==========================================
 // 4. AUTO-SCALING KIOSK ENGINE
 // ==========================================
+function getAppScale() {
+  const windowWidth = window.innerWidth;
+  const windowHeight = window.innerHeight;
+  const scaleX = windowWidth / 1080;
+  const scaleY = windowHeight / 1920;
+  return Math.min(scaleX, scaleY);
+}
+
 function setupAutoScaling() {
   const stage = document.getElementById('app-stage');
   if (!stage) return;
 
   function updateScale() {
-    const windowWidth = window.innerWidth;
-    const windowHeight = window.innerHeight;
-
-    const scaleX = windowWidth / 1080;
-    const scaleY = windowHeight / 1920;
-    const scale = Math.min(scaleX, scaleY);
-
+    const scale = getAppScale();
     stage.style.transform = `scale(${scale})`;
+
+    document.querySelectorAll('.modal-scale-wrapper').forEach(el => {
+      el.style.transform = `scale(${scale})`;
+    });
   }
 
   window.addEventListener('resize', updateScale);
@@ -692,38 +698,38 @@ function attachEventHandlers(totalBoxes) {
 }
 
 function showFullLyricsModal() {
-  const container = document.body;
-  if (!container) return;
-
   const verseData = SCHOOL_SONG_DATA.verses[state.currentVerseIndex];
+  const scale = getAppScale();
 
   const lyricsHtml = `
     <div class="result-overlay" id="lyrics-modal-overlay">
-      <div class="result-dialog full-lyrics-dialog">
-        <div class="lyrics-modal-header">
-          <span class="lyrics-icon">🎼</span>
-          <h2 class="lyrics-title">${SCHOOL_SONG_DATA.schoolName} 교가 전체 가사</h2>
-        </div>
-        
-        <div class="lyrics-content-card">
-          <div class="lyrics-verse-badge">${verseData.title} 가사</div>
-          <div class="lyrics-lines-list">
-            ${verseData.lines.map((line, idx) => `
-              <div class="lyrics-line-item">
-                <span class="line-num">${idx + 1}.</span>
-                <span class="line-text">${line.fullText}</span>
+      <div class="modal-scale-wrapper" style="transform: scale(${scale});">
+        <div class="result-dialog full-lyrics-dialog">
+          <div class="lyrics-modal-header">
+            <span class="lyrics-icon">🎼</span>
+            <h2 class="lyrics-title">${SCHOOL_SONG_DATA.schoolName} 교가 전체 가사</h2>
+          </div>
+          
+          <div class="lyrics-content-card">
+            <div class="lyrics-verse-badge">${verseData.title} 가사</div>
+            <div class="lyrics-lines-list">
+              ${verseData.lines.map((line, idx) => `
+                <div class="lyrics-line-item">
+                  <span class="line-num">${idx + 1}.</span>
+                  <span class="line-text">${line.fullText}</span>
+                </div>
+              `).join('')}
+              <div class="lyrics-refrain-item">
+                <span class="refrain-star">⭐</span>
+                <span class="refrain-text">"아 빛내자 우리 학교 서울 신답초등학교"</span>
               </div>
-            `).join('')}
-            <div class="lyrics-refrain-item">
-              <span class="refrain-star">⭐</span>
-              <span class="refrain-text">"아 빛내자 우리 학교 서울 신답초등학교"</span>
             </div>
           </div>
-        </div>
 
-        <button id="btn-modal-close-lyrics" class="ctrl-btn ctrl-btn-pri" style="width: 100%; height: 160px; margin-top: 24px; font-size: 38px; border-radius: 28px;">
-          <span>확인</span>
-        </button>
+          <button id="btn-modal-close-lyrics" class="ctrl-btn ctrl-btn-pri" style="width: 100%; height: 480px; margin-top: 24px; font-size: 38px; border-radius: 28px;">
+            <span>확인</span>
+          </button>
+        </div>
       </div>
     </div>
   `;
@@ -731,7 +737,7 @@ function showFullLyricsModal() {
   const existingModal = document.getElementById('lyrics-modal-overlay');
   if (existingModal) existingModal.remove();
 
-  container.insertAdjacentHTML('beforeend', lyricsHtml);
+  document.body.insertAdjacentHTML('beforeend', lyricsHtml);
 
   document.getElementById('btn-modal-close-lyrics').addEventListener('click', () => {
     sfx.playClick();
@@ -816,30 +822,31 @@ function validateAnswer(totalBoxes) {
 }
 
 function showResultModal(isSuccess) {
-  const container = document.body;
-  if (!container) return;
-
   if (isSuccess) {
     launchSideConfetti();
   }
 
+  const scale = getAppScale();
+
   const modalHtml = `
     <div class="result-overlay">
-      <div class="result-dialog">
-        <div class="result-trophy">${isSuccess ? '🏆' : '⏰'}</div>
-        <h2 class="result-title-text">${isSuccess ? '교가 완성! 참 잘했어요!' : '시간이 다 되었어요!'}</h2>
-        
-        <div class="result-score-big">${state.score} 점</div>
+      <div class="modal-scale-wrapper" style="transform: scale(${scale});">
+        <div class="result-dialog">
+          <div class="result-trophy">${isSuccess ? '🏆' : '⏰'}</div>
+          <h2 class="result-title-text">${isSuccess ? '교가 완성! 참 잘했어요!' : '시간이 다 되었어요!'}</h2>
+          
+          <div class="result-score-big">${state.score} 점</div>
 
-        <div style="font-size: 34px; color: #334155; font-weight: 700; line-height: 1.5; margin-top: 8px;">
-          오늘도 멋지게 빛난 우리들!<br>
-          다음에 또 만나요!
-        </div>
+          <div style="font-size: 34px; color: #334155; font-weight: 700; line-height: 1.5; margin-top: 8px;">
+            오늘도 멋지게 빛난 우리들!<br>
+            다음에 또 만나요!
+          </div>
 
-        <div style="width: 100%; margin-top: 24px;">
-          <button id="btn-modal-confirm" class="ctrl-btn ctrl-btn-pri" style="width: 100%; height: 160px; margin-top: 24px; font-size: 38px; border-radius: 28px;">
-            <span>확인</span>
-          </button>
+          <div style="width: 100%; margin-top: 24px;">
+            <button id="btn-modal-confirm" class="ctrl-btn ctrl-btn-pri" style="width: 100%; height: 160px; margin-top: 24px; font-size: 38px; border-radius: 28px;">
+              <span>확인</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -847,7 +854,7 @@ function showResultModal(isSuccess) {
 
   document.querySelectorAll('.result-overlay').forEach(el => el.remove());
 
-  container.insertAdjacentHTML('beforeend', modalHtml);
+  document.body.insertAdjacentHTML('beforeend', modalHtml);
 
   document.getElementById('btn-modal-confirm').addEventListener('click', () => {
     sfx.playClick();

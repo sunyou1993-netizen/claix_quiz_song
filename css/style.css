@@ -59,7 +59,7 @@ html, body {
   justify-content: center;
   cursor: pointer;
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.22);
-  z-index: 200;
+  z-index: 20;
   transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
 }
 
@@ -613,12 +613,22 @@ html, body {
   background: rgba(15, 23, 42, 0.75);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  z-index: 9999;
+  z-index: 99999;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 32px;
+  padding: 0;
   box-sizing: border-box;
+  overflow: hidden;
+}
+
+.modal-scale-wrapper {
+  width: 1080px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center center;
 }
 
 /* Toast Popup Styling */
@@ -689,7 +699,8 @@ html, body {
   border: 6px solid #006CFF;
   border-radius: 40px;
   padding: 48px;
-  width: 100%;
+  max-width: 860px;
+  width: 90%;
   text-align: center;
   display: flex;
   flex-direction: column;
