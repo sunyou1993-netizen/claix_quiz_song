@@ -3,6 +3,61 @@
  * Main JavaScript Module - Complete Interactive Implementation
  */
 
+const HOME_URL = 'https://claix-quiz-list6-bp67.vercel.app/';
+
+export function goToHome(e) {
+  if (e) {
+    if (typeof e.preventDefault === 'function') e.preventDefault();
+    if (typeof e.stopPropagation === 'function') e.stopPropagation();
+  }
+
+  try {
+    if (window.sfx && typeof window.sfx.playClick === 'function') {
+      window.sfx.playClick();
+    }
+  } catch (err) {}
+
+  // 1. Try window.top for iframe parent container
+  try {
+    if (window.top && window.top !== window) {
+      window.top.location.href = HOME_URL;
+      return;
+    }
+  } catch (err) {
+    // Cross-origin iframe fallback
+  }
+
+  // 2. Try window.parent
+  try {
+    if (window.parent && window.parent !== window) {
+      window.parent.location.href = HOME_URL;
+      return;
+    }
+  } catch (err) {}
+
+  // 3. Direct window navigation fallback
+  try {
+    window.location.assign(HOME_URL);
+  } catch (err) {
+    window.location.href = HOME_URL;
+  }
+}
+window.goToHome = goToHome;
+
+// Global event handlers on capture phase for all pointer/touch/click events
+['click', 'pointerdown', 'touchend'].forEach(evtName => {
+  document.addEventListener(evtName, (e) => {
+    const target = e.target;
+    if (target && (
+      target.id === 'btn-back' ||
+      target.id === 'btn-close' ||
+      (target.closest && target.closest('#btn-back, .btn-top-back, #btn-close'))
+    )) {
+      goToHome(e);
+    }
+  }, true);
+});
+
 // ==========================================
 // 1. DATA: 서울신답초등학교 교가 가사 & 초성 데이터
 // ==========================================
@@ -521,11 +576,11 @@ function renderMainGameUI() {
   // Render Chalkboard Card + Keypad Tray
   main.innerHTML = `
     <!-- Top-Left Circular Back Button -->
-    <button id="btn-back" class="btn-top-back" aria-label="닫기">
-      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#334155" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <a id="btn-back" class="btn-top-back" href="https://claix-quiz-list6-bp67.vercel.app/" target="_top" aria-label="닫기" onclick="goToHome(event)">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#334155" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="pointer-events:none;">
         <path d="M18 6L6 18M6 6l12 12"/>
       </svg>
-    </button>
+    </a>
 
     <!-- Title Banner Area -->
     <div class="title-banner-wrapper">
@@ -599,10 +654,11 @@ function attachEventHandlers(totalBoxes) {
   // 0. Top Back/Close Button
   const btnBack = document.getElementById('btn-back');
   if (btnBack) {
-    btnBack.addEventListener('click', () => {
-      sfx.playClick();
-      window.location.href = 'https://claix-quiz-list-rl4x.vercel.app/';
-    });
+    btnBack.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      goToHome();
+    };
   }
 
   // 1. Choseong Box Tap Handler
@@ -726,7 +782,7 @@ function showFullLyricsModal() {
             </div>
           </div>
 
-          <button id="btn-modal-close-lyrics" class="ctrl-btn ctrl-btn-pri" style="width: 100%; height: 160px; margin-top: 24px; font-size: 38px; border-radius: 28px;">
+          <button id="btn-modal-close-lyrics" class="ctrl-btn ctrl-btn-pri" style="width: 100%; height: 480px; margin-top: 24px; font-size: 38px; border-radius: 28px;">
             <span>확인</span>
           </button>
         </div>
@@ -872,19 +928,21 @@ document.addEventListener('DOMContentLoaded', () => {
   // Header Back / Close Button
   const btnBack = document.getElementById('btn-back');
   if (btnBack) {
-    btnBack.addEventListener('click', () => {
-      sfx.playClick();
-      window.location.href = 'https://claix-quiz-list-rl4x.vercel.app/';
-    });
+    btnBack.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      goToHome();
+    };
   }
 
   // Header Home / Close Button
   const btnClose = document.getElementById('btn-close');
   if (btnClose) {
-    btnClose.addEventListener('click', () => {
-      sfx.playClick();
-      initGameSession();
-    });
+    btnClose.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      goToHome();
+    };
   }
 
   // Start initial game session immediately
