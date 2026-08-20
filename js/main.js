@@ -601,7 +601,7 @@ function attachEventHandlers(totalBoxes) {
   if (btnBack) {
     btnBack.addEventListener('click', () => {
       sfx.playClick();
-      window.location.href = 'https://claix-quiz-list6-bp67.vercel.app/';
+      window.location.href = 'https://claix-quiz-list-rl4x.vercel.app/';
     });
   }
 
@@ -726,7 +726,7 @@ function showFullLyricsModal() {
             </div>
           </div>
 
-          <button id="btn-modal-close-lyrics" class="ctrl-btn ctrl-btn-pri" style="width: 100%; height: 480px; margin-top: 24px; font-size: 38px; border-radius: 28px;">
+          <button id="btn-modal-close-lyrics" class="ctrl-btn ctrl-btn-pri" style="width: 100%; height: 160px; margin-top: 24px; font-size: 38px; border-radius: 28px;">
             <span>확인</span>
           </button>
         </div>
@@ -874,7 +874,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (btnBack) {
     btnBack.addEventListener('click', () => {
       sfx.playClick();
-      window.location.href = 'https://claix-quiz-list6-bp67.vercel.app/';
+      window.location.href = 'https://claix-quiz-list-rl4x.vercel.app/';
     });
   }
 
